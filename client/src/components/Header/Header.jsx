@@ -62,7 +62,7 @@ const Header = () => {
                         </span>
                     </Link>
 
-                    <Link to={"/"} className='menu-link flex flex-col items-center hover:text-[blue] transition-all '>
+                    <Link to={"/stats"} className='menu-link flex flex-col items-center hover:text-[blue] transition-all '>
                         <PieChartOutlined className="md:text-lg sm:text-base" />
                         <span>
                             İstatistik

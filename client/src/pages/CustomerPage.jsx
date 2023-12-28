@@ -1,7 +1,6 @@
 import Header from "../components/Header/Header.jsx";
-import React, {useState} from 'react'
-import { Table, Card, Button } from "antd"
-import PrintBill from "../components/Bills/PrintBilll.jsx"
+import React from 'react'
+import { Table} from "antd"
 
 const dataSource = [
   {
@@ -47,7 +46,6 @@ const columns = [
 
 const CustomerPage = () => {
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   
   
   return (
