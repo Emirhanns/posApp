@@ -4,6 +4,7 @@ import CartPage from "./pages/CartPage";
 import BillsPage from "./pages/BillsPage";
 import CustomerPage from "./pages/CustomerPage";
 import StatsPage from "./pages/StatsPage";
+import Register from "./pages/auth/Register";
 
 
 
@@ -19,7 +20,7 @@ function App() {
         <Route path="/bills" element={<BillsPage />} />
         <Route path="/customers" element={<CustomerPage />} />
         <Route path="/stats" element={<StatsPage />} />
-
+        <Route path="/register" element={<Register />} />
 
       </Routes>
 
