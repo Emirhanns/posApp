@@ -2,7 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
+const cors = require("cors");
 const port = 5000;
+
+//routes
+
+const CategoryRoute = require("./routes/categories.js")
+
 
 dotenv.config();
 
@@ -13,10 +19,16 @@ const connect = async () => {
 }catch (error){
             throw error;
     }
-}
+};
+
+//middlewares
+app.use(express.json());
+app.use("/api/categories",CategoryRoute);
+app.use(cors())
 
 
-app.get("/",(req,res) => res.send("Hello World!"))
+
+
 
 app.listen(port, () => {
     console.log(`Örnek ${port}`);
