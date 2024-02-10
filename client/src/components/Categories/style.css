@@ -1,0 +1,4 @@
+.category-item
+{
+    @apply bg-green-700 px-2 py-4 text-white  cursor-pointer hover:bg-blue-400 transition-all text-center 
+}
