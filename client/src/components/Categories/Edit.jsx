@@ -29,6 +29,24 @@ const Edit = ({ isEditModalOpen, setIsEditModalOpen, categories, setCategories }
         }
     }
 
+    const deleteCategory = (id) =>{
+       if(window.confirm("Emin misiniz?")){
+        try {
+            fetch("http://localhost:5000/api/categories/delete-category", {
+                method:"DELETE",
+                body: JSON.stringify({categoryId:id}),
+                headers: { "Content-type": "application/json; charset=UTF-8" },
+
+            })
+            message.success("Kategori Silindi")
+            setCategories(categories.filter((item)=>item._id !== id));
+        } 
+        catch (error) {
+            console.log(error)
+        }
+       }
+    }
+
     const columns = [
         {
             title: "Kategori Başlığı",
@@ -58,7 +76,7 @@ const Edit = ({ isEditModalOpen, setIsEditModalOpen, categories, setCategories }
                 return (
                     <div>
                         <Button type='link' className='pl-0' onClick={() => setEditingRow(record)} >Düzenle</Button>
-                        <Button type='text' danger>Sil</Button>
+                        <Button type='text' danger onClick={()=> deleteCategory(record._id)} >Sil</Button>
                         <Button type='text' htmlType='submit'>Kaydet</Button>
                     </div>
                 )
