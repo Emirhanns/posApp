@@ -1,8 +1,17 @@
 import React from 'react'
+import { addProduct } from '../../pages/redux/cartSlice'
+import { useDispatch } from "react-redux";
+import { message } from "antd";
 
 const ProductItem = ({item}) => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(addProduct({...item,quantity:1}));
+    message.success("Ürün Sepete Eklendi.")
+  };
   return (
-<div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
+<div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"} }onClick={handleClick}>
           <img
             alt="example"
             src={item.img}

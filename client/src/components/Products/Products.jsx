@@ -36,7 +36,7 @@ const Products = ({categories}) => {
       <div className="product-item border hover:opacity-90 cursor-pointer bg-purple-800 w-full h-full text-2xl flex justify-center items-center text-white" onClick={() => setIsAddModalOpen(true)}>
         <PlusOutlined  />
       </div>
-      <div className="product-item border hover:opacity-90 min-h-[180px] cursor-pointer bg-purple-800 w-full h-full text-2xl flex justify-center items-center text-white" onClick={()=> navigate("/products")} >
+      <div className="product-item border hover:opacity-90 min-h-[1vh] cursor-pointer bg-purple-800 w-full h-full text-2xl flex justify-center items-center text-white" onClick={()=> navigate("/products")} >
         <EditOutlined />
       </div>
         <Add isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen} categories={categories} setProducts={setProducts} products={products} />

@@ -2,6 +2,7 @@ import React from 'react';
 import { HomeOutlined, CopyOutlined, ShoppingCartOutlined, UserOutlined, LogoutOutlined,PieChartOutlined } from '@ant-design/icons';
 import { Input, Badge } from 'antd';
 import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const { Search } = Input;
@@ -10,6 +11,9 @@ const onSearch = (value, _e, info) => console.log(info?.source, value);
 
 
 const Header = () => {
+    const cart = useSelector((state) => state.cart);
+
+  console.log(cart.cartItems.length);
     return (
         <div className='border-b mb-6'>
             <header className='py-6 px-6 flex justify-between gap-10'>
@@ -40,7 +44,7 @@ const Header = () => {
                         </span>
                     </Link>
                     <Link to={"/cart"} className='menu-link flex-col items-center hover:text-[blue] transition-all md:flex hidden'>
-                    <Badge count={2}>
+                    <Badge count={cart.cartItems.length}>
                         <ShoppingCartOutlined className="md:text-lg sm:text-base"/>
                     </Badge>
                         <span>
