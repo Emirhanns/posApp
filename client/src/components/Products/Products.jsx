@@ -1,275 +1,47 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import ProductItem from './ProductItem'
+import { PlusOutlined, EditOutlined} from "@ant-design/icons";
+import Add from "./Add.jsx"
 
 
-const Products = () => {
+
+const Products = ({categories}) => {
+  const [products, setProducts] = useState([])
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+
+  useEffect(()=>{
+    const getProducts = async ()=>{
+      try {
+        const res = await fetch("http://localhost:5000/api/products/get-all");
+        const data = await res.json();
+        setProducts(data)
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+    getProducts();
+  },[]);
+
   return (
     <div className='grid grid-cols-card md:grid-cols-2 lg:grid-cols-5 gap-2 overflow-y-auto' style={{ maxHeight: "75vh" }}>
     
-     <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
+      {products.map((item)=>(
+          <ProductItem key={item._id} item={item} />
+      ) )}
 
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
+      <div className="product-item border hover:opacity-90 cursor-pointer bg-purple-800 w-full h-full text-2xl flex justify-center items-center text-white" onClick={() => setIsAddModalOpen(true)}>
+        <PlusOutlined  />
       </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
+      <div className="product-item border hover:opacity-90 min-h-[180px] cursor-pointer bg-purple-800 w-full h-full text-2xl flex justify-center items-center text-white" >
+        <EditOutlined />
       </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-    <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
-
-   <div className="bg-white rounded-lg overflow-hidden border-4" style={{width:"100%", height:"100%"}}>
-      <img
-        alt="example"
-        src="/images/mandalina.jpg"
-        className="w-full h-auto"
-      />
-      <div className="p-1">
-        <h3 className="text-sm font-bold mb-1">Mandalina</h3>
-        <p className="text-gray-600 text-sm">20 TL</p>
-      </div>
-    </div>
+        <Add isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen} categories={categories} setProducts={setProducts} products={products} />
 
     </div>
+
+     
 
   );
 };
