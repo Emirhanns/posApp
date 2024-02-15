@@ -4,6 +4,7 @@ import { Button,message } from 'antd';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { deleteCart, increase, decrease,reset } from '../../pages/redux/cartSlice';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,6 +12,7 @@ const CardTotals = () => {
   const [size] = useState('small'); // default is 'middle'
   const cart = useSelector((state) => state.cart);
   const dispatch= useDispatch()
+  const navigate = useNavigate()
   return (
 
     <div className="cart h-full flex 1 flex-col grid-cols-2 margin-12 " style={{ maxHeight: '75vh' }}>
@@ -64,7 +66,7 @@ const CardTotals = () => {
                   />
                 </div>
               </li>
-            ))
+            )).reverse()
           : "Sepette hiç ürün yok..."}
            </ul>
 
@@ -93,8 +95,8 @@ const CardTotals = () => {
           </div>
 
           <div className="flex justify-between p-2">
-            <Button type="primary" disabled={cart.cartItems.length === 0} icon={<ShoppingCartOutlined />} size={'middle'}>Sepete At</Button>
-            <Button type="primary" danger disabled={cart.cartItems.length === 0}
+            <Button type="primary" disabled={cart.cartItems.length === 0} icon={<ShoppingCartOutlined />} size={'middle'} onClick={()=> navigate("/cart")} >Sepete At</Button>
+            <Button type="primary" danger disabled={cart.cartItems.length === 0} 
             onClick={() => {
               if (window.confirm("Emin Misiniz?")) {
                 dispatch(reset());

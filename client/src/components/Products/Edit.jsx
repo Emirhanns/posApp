@@ -63,15 +63,17 @@ const Edit = () => {
         }
     };
 
-    const deleteCategory = (id) => {
+    const deleteCategory = async (id) => {
         if (window.confirm("Emin misiniz?")) {
             try {
-                fetch("http://localhost:5000/api/products/delete-product", {                    method: "DELETE",
-                    body: JSON.stringify({ categoryId: id }),
+                await fetch("http://localhost:5000/api/products/delete-product", {                    
+                    method: "DELETE",
+                    body: JSON.stringify({ productId: id }), // Değişiklik burada
                     headers: { "Content-type": "application/json; charset=UTF-8" },
                 });
-                message.success("Kategori başarıyla silindi.");
-                setProducts(products.filter((item) => item._id !== id));            } catch (error) {
+                message.success("Ürün başarıyla silindi."); // Başarılı mesajı silindi olarak güncellendi
+                setProducts(products.filter((item) => item._id !== id));            
+            } catch (error) {
                 message.error("Bir şeyler yanlış gitti.");
                 console.log(error);
             }

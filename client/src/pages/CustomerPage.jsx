@@ -1,68 +1,62 @@
+import { Table } from "antd";
+import { useEffect, useState } from "react";
 import Header from "../components/Header/Header.jsx";
-import React from 'react'
-import { Table} from "antd"
-
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
-  },
-  {
-    key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
-  },
-];
-
-const columns = [
-  {
-    title: 'Ürün Görseli',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Ürün Adı',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Kategori',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Ürün Fiyatı',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  
-  
-];
-
-
 
 const CustomerPage = () => {
+  const [billItems, setBillItems] = useState([]);
 
-  
-  
+  useEffect(() => {
+    const getBills = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/bills/get-all");
+        const data = await res.json();
+        setBillItems(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getBills();
+  }, []);
+
+  const columns = [
+    {
+      title: "Müşteri Adı",
+      dataIndex: "CustomerName",
+      key: "CustomerName",
+    },
+    {
+      title: "Telefon Numarası",
+      dataIndex: "CustomerNumber",
+      key: "CustomerNumber",
+    },
+    {
+      title: "İşlem Tarihi",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (text) => {
+        return <span>{text.substring(0, 10)}</span>;
+      },
+    },
+  ];
+
   return (
     <>
       <Header />
-
-      <h1 className="text-4xl font-bold text-center mb-4 ">Müşteriler</h1>
-
-      <div >
-        <Table dataSource={dataSource} columns={columns} bordered pagination={false} />;
-
-       
+      <div className="px-6">
+        <h1 className="text-4xl font-bold text-center mb-4">Müşterilerim</h1>
+        <Table
+          dataSource={billItems}
+          columns={columns}
+          bordered
+          pagination={false}
+          scroll={{
+            x: 1000,
+            y: 300
+          }}
+        />
       </div>
-
     </>
-
-  )
-}
-
+  );
+};
 export default CustomerPage;

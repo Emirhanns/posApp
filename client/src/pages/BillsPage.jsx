@@ -1,73 +1,78 @@
 import Header from "../components/Header/Header.jsx";
-import React, {useState} from 'react'
-import { Table, Card, Button } from "antd"
-import PrintBill from "../components/Bills/PrintBilll.jsx"
-
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
-  },
-  {
-    key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
-  },
-];
-
-const columns = [
-  {
-    title: 'Ürün Görseli',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Ürün Adı',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Kategori',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Ürün Fiyatı',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Ürün Adı',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Kategori',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Toplam Fiyatı',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Aksiyon',
-    dataIndex: 'address',
-    key: 'address',
-  },
-];
-
-
+import React, { useState, useEffect } from 'react'
+import { Table, Button } from "antd"
+import CreateBill from "../components/Bills/PrintBilll.jsx"
 
 const BillsPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  
+  const [billItems, setBilItems] = useState([]);
+  const [customer, setCustomer] = useState();
+
+
+  const columns = [
+    {
+      title: 'Müşteri Adı',
+      dataIndex: 'CustomerName',
+      key: 'CustomerName',
+    },
+    {
+      title: 'Telefon Numarası',
+      dataIndex: 'CustomerNumber',
+      key: 'CustomerNumber',
+    },
+    {
+      title: 'Oluşturma Tarihi',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      render: (text) => {
+        return <span>{text.substring(0, 10)}</span>
+      }
+    },
+    {
+      title: 'Ödeme Yöntemi',
+      dataIndex: 'PaymentMode',
+      key: 'PaymentMode',
+    },
+    {
+      title: 'Toplam Fiyat',
+      dataIndex: 'TotalAmount',
+      key: 'TotalAmount',
+      render: (text) => {
+        return <span>{text}₺</span>
+      },
+    },
+    {
+      title: 'Aksiyon',
+      dataIndex: 'action',
+      key: 'action',
+      render: (_, record) => {
+        return <Button type="primary" onClick={() => {
+          setIsModalOpen(true)
+          setCustomer(record);
+        }} >Yazdır</Button>
+      }
+    },
+  ];
+
+
+
+  useEffect(() => {
+    const getBills = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/bills/get-all")
+        const data = await res.json();
+        setBilItems(data);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
+    getBills();
+
+  }, []);
+
+
   return (
     <>
       <Header />
@@ -75,22 +80,29 @@ const BillsPage = () => {
       <h1 className="text-4xl font-bold text-center mb-4 ">Fatura</h1>
 
       <div >
-        <Table dataSource={dataSource} columns={columns} bordered pagination={false} />;
+        <Table
+          dataSource={billItems.map((item, index) => ({
+            ...item,
+            key: index, // veya eğer benzersiz bir id varsa item.id şeklinde kullanılabilir
+          }))}
+          columns={columns}
+          bordered
+          pagination={false}
+        />      </div>
 
-        <div className="cart-total flex justify-end">
-          <Card className="w-72">
-
-            <Button className="mt-2 w-full" type="primary" size="large" onClick={() => setIsModalOpen(true)} >Yazdır</Button>
-          </Card>
-
-          {isModalOpen}
-        </div>
-      </div>
-
-      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <CreateBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer} />
     </>
 
   )
+
+
+
+
 }
+
+
+
+
+
 
 export default BillsPage;
