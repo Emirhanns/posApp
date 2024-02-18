@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const port = 5000;
 const app = express();
+const logger = require("morgan");
 
 dotenv.config();
 
@@ -16,8 +17,10 @@ const connect = async () => {
     }
 };
 
+
 // CORS middleware'ini rotalardan önce tanımla
 app.use(cors());
+
 
 //routes
 const CategoryRoute = require("./routes/categories.js")
@@ -27,12 +30,16 @@ const AuthRoute = require("./routes/auth.js")
 const UserRoute = require("./routes/users.js")
 
 //middlewares
+
 app.use(express.json());
 app.use("/api/categories",CategoryRoute);
 app.use("/api/products",ProductRoute);
 app.use("/api/bills",BillRoute);
 app.use("/api/auth",AuthRoute);
 app.use("/api/users",UserRoute);
+app.use(logger("dev"));
+
+
 
 app.listen(port, () => {
     console.log(`Örnek ${port}`);

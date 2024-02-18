@@ -2,11 +2,13 @@ import Header from "../components/Header/Header.jsx";
 import React, { useState, useEffect } from 'react'
 import { Table, Button } from "antd"
 import CreateBill from "../components/Bills/PrintBilll.jsx"
+import {Spin} from "antd";
+
 
 const BillsPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [billItems, setBilItems] = useState([]);
+  const [billItems, setBilItems] = useState();
   const [customer, setCustomer] = useState();
 
 
@@ -77,19 +79,28 @@ const BillsPage = () => {
     <>
       <Header />
 
-      <h1 className="text-4xl font-bold text-center mb-4 ">Fatura</h1>
-
-      <div >
-        <Table
-          dataSource={billItems.map((item, index) => ({
-            ...item,
-            key: index, // veya eğer benzersiz bir id varsa item.id şeklinde kullanılabilir
-          }))}
-          columns={columns}
-          bordered
-          pagination={false}
-        />      </div>
-
+      <h1 className="text-4xl font-bold text-center mb-4">Faturalar</h1>
+      {billItems ? (
+        <div className="px-6">
+          <Table
+            dataSource={billItems}
+            columns={columns}
+            bordered
+            pagination={false}
+            scroll={{
+              x: 1000,
+              y: 300,
+            }}
+            rowKey="_id"
+          />
+        </div>
+      ) : (
+        <Spin
+          size="large"
+          className="absolute top-1/2 h-screen w-screen flex justify-center"
+        />
+      )}
+          
       <CreateBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer} />
     </>
 

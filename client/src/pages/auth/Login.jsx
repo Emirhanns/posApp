@@ -1,17 +1,61 @@
-import { Button, Carousel, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import AuthCarousel from "../../components/auth/authCarousel";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
+
+      const user = await res.json();
+
+      if (res.status === 200) {
+        localStorage.setItem(
+          "posUser",
+          JSON.stringify({
+            UserName: user.UserName,
+            Email: user.Email,
+          })
+        );
+        message.success("Giriş işlemi başarılı.");
+        navigate("/");
+      } else if (res.status === 404) {
+        message.error("Kullanıcı bulunamadı!");
+      } else if (res.status === 403) {
+        message.error("Şifre yanlış!");
+      }
+      setLoading(false);
+    } catch (error) {
+      message.error("Bir şeyler yanlış gitti.");
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="h-screen">
       <div className="flex justify-between h-full">
         <div className="xl:px-20 px-10 w-full flex flex-col h-full justify-center relative">
           <h1 className="text-center text-5xl font-bold mb-2">LOGO</h1>
-          <Form layout="vertical">
+          <Form
+            layout="vertical"
+            onFinish={onFinish}
+            initialValues={{
+              remember: false,
+            }}
+          >
             <Form.Item
               label="E-mail"
-              name={"email"}
+              name={"Email"}
               rules={[
                 {
                   required: true,
@@ -23,7 +67,7 @@ const Login = () => {
             </Form.Item>
             <Form.Item
               label="Şifre"
-              name={"password"}
+              name={"Password"}
               rules={[
                 {
                   required: true,
@@ -45,6 +89,7 @@ const Login = () => {
                 htmlType="submit"
                 className="w-full"
                 size="large"
+                loading={loading}
               >
                 Giriş Yap
               </Button>
@@ -89,5 +134,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

@@ -7,6 +7,8 @@ const StatsPage = () => {
     const [customerSales, setCustomerSales] = useState([]);
     const [, setProductPrices] = useState([]);
     const [productData, setProductData] = useState([]);
+    const user = JSON.parse(localStorage.getItem("posUser"));
+
 
     useEffect(() => {
         // Faturaları API'den al
@@ -52,7 +54,10 @@ const StatsPage = () => {
         <>
             <Header />
             <h1 className="text-4xl font-bold text-center mb-4 ">İstatistikler</h1>
-
+            <h2>
+                Hoş Geldin {" "}
+                <span>{user.UserName}</span>
+            </h2>
             <div className="lg:flex lg:justify-around grid lg:grid-cols-4 md:grid-cols-2 md:ml-28 lg:ml-0 justify-center my-5">
                 <StatsCard title={"Toplam Müşteri"} amount={totalCustomers} img={"/images/mandalina.jpg"} />
                 <StatsCard title={"Toplam Satış"} amount={totalCustomers} img={"/images/sale.png"} />

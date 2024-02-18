@@ -54,6 +54,7 @@ const CustomerPage = () => {
             x: 1000,
             y: 300
           }}
+          
         />
       </div>
     </>

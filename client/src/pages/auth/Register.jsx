@@ -16,15 +16,23 @@ const Register = () => {
         body: JSON.stringify(values),
         headers: { "Content-type": "application/json; charset=UTF-8" },
       });
-      if (res.status === 200) {
+  
+      if (res.ok) {
         message.success("Kayıt işlemi başarılı.");
         navigate("/login");
         setLoading(false);
+      } else {
+        // Sunucudan dönen hata mesajını al
+        const errorMessage = await res.text();
+        throw new Error(errorMessage);
       }
     } catch (error) {
-      message.error("Bir şeyler yanlış gitti.");
-      console.log(error);
-    }}
+      message.error(error.message || "Bir şeyler yanlış gitti.");
+      console.error(error);
+      setLoading(false);
+    }
+  };
+  
   return (
     <div className="h-screen">
       <div className="flex justify-between h-full">
@@ -33,7 +41,7 @@ const Register = () => {
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               label="Kullanıcı Adı"
-              name={"username"}
+              name={"UserName"}
               rules={[
                 {
                   required: true,
@@ -45,7 +53,7 @@ const Register = () => {
             </Form.Item>
             <Form.Item
               label="E-mail"
-              name={"email"}
+              name={"Email"}
               rules={[
                 {
                   required: true,
@@ -57,7 +65,7 @@ const Register = () => {
             </Form.Item>
             <Form.Item
               label="Şifre"
-              name={"password"}
+              name={"Password"}
               rules={[
                 {
                   required: true,

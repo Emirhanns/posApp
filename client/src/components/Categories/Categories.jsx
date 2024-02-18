@@ -1,23 +1,35 @@
 import "./style.css";
-import { PlusOutlined, EditOutlined} from "@ant-design/icons";
-import { useState } from "react";
+import { PlusOutlined, EditOutlined } from "@ant-design/icons";
+import { useState, useEffect } from "react";
 import Add from "./Add.jsx"
 import Edit from "./Edit.jsx"
 
 
-const Categories = ({ categories, setCategories }) => {
+const Categories = ({ categories, setCategories, setFiltered, products }) => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [categoryTitle, setCategoryTitle] = useState("Tümü");
 
- 
+    useEffect(() => {
+        if (categoryTitle === "Tümü") {
+            setFiltered(products);
+        } else {
+            setFiltered(products.filter((item) => item.category === categoryTitle));
+        }
+    }, [products, setFiltered, categoryTitle]);
+
 
     return (
 
         <ul className='flex gap-2 md:flex-col overflow-y-auto text-md grid-cols-3' style={{ maxHeight: '75vh', paddingInline: '7px' }}>
 
             {categories.map((item) => (
-                <li className='category-item min-w-20 flex justify-center items-center  ' key={item._id}>
-                    <span>{item.title}</span>
+                <li
+                    className={`category-item ${item.title === categoryTitle && "!bg-pink-700"
+                        }`}
+                    key={item._id}
+                    onClick={() => setCategoryTitle(item.title)}
+                >                    <span>{item.title}</span>
                 </li>
             ))}
 
