@@ -76,29 +76,27 @@ const Register = () => {
               <Input.Password />
             </Form.Item>
             <Form.Item
-              label="Şifre Tekrar"
-              name={"passwordAgain"}
-              dependencies={["password"]}
-              rules={[
-                {
-                  required: true,
-                  message: "Şifre Tekrar Alanı Boş Bırakılamaz!",
-                },
-                ({getFieldValue}) => ({
-                  validator(_,value) {
-                    if (!value || getFieldValue("password")===value){
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error("Şifre ile aynı olmalıdır")
-                    )
-                  }
-                })
-              ]}
-              
-            >
-              <Input.Password />
-            </Form.Item>
+  label="Şifre Tekrar"
+  name="passwordAgain"
+  dependencies={["Password"]}
+  rules={[
+    {
+      required: true,
+      message: "Şifre Tekrar Alanı Boş Bırakılamaz!",
+    },
+    ({ getFieldValue }) => ({
+      validator(_, value) {
+        if (!value || getFieldValue("Password") === value) {
+          return Promise.resolve();
+        }
+        return Promise.reject(new Error("Şifre ile aynı olmalıdır"));
+      },
+    }),
+  ]}
+>
+  <Input.Password />
+</Form.Item>
+
             <Form.Item>
               <Button
                 type="primary"
