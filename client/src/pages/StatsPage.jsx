@@ -12,7 +12,7 @@ const StatsPage = () => {
 
     useEffect(() => {
         // Faturaları API'den al
-        fetch("http://localhost:5000/api/bills/get-all")
+        fetch(process.env.REACT_APP_SERVER_URL + "/api/bills/get-all")
             .then(response => response.json())
             .then(data => {
                 // Fatura verilerinden müşteri adı ve toplam tutarı al
@@ -31,7 +31,7 @@ const StatsPage = () => {
             .catch(error => console.error('Error fetching sales data:', error));
 
         // Ürünleri API'den al
-        fetch("http://localhost:5000/api/products/get-all")
+        fetch(process.env.REACT_APP_SERVER_URL + "/api/products/get-all")
             .then(response => response.json())
             .then(data => {
                 setProductData(data);
