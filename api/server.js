@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 const logger = require("morgan");
 
