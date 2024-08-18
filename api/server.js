@@ -23,11 +23,14 @@ app.use(cors());
 
 
 //routes
+app.get('/', (req, res) => res.send('Merhaba sunucudan!'));
+
 const CategoryRoute = require("./routes/categories.js")
 const ProductRoute = require("./routes/products.js")
 const BillRoute = require("./routes/bills.js")
 const AuthRoute = require("./routes/auth.js")
 const UserRoute = require("./routes/users.js")
+
 
 //middlewares
 
@@ -45,3 +48,7 @@ app.listen(port, () => {
     console.log(`Örnek ${port}`);
     connect();
 });
+
+
+
+

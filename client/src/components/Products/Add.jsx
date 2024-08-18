@@ -31,6 +31,11 @@ const Add = ({isAddModalOpen,setIsAddModalOpen,categories,products ,setProducts}
             <Input />
         </Form.Item>
 
+        <Form.Item name="author" label="Yazar Adı" 
+        rules={[{required:false, message:"Yazar Adı Boş Geçilemez"}]} >
+            <Input />
+        </Form.Item>
+
         <Form.Item name="img" label="Ürün Görseli" 
         rules={[{required:true, message:"Ürün Görseli Boş Geçilemez"}]} >
             <Input />
@@ -40,6 +45,7 @@ const Add = ({isAddModalOpen,setIsAddModalOpen,categories,products ,setProducts}
         rules={[{required:true, message:"Ürün Fiyatı Boş Geçilemez"}]} >
             <Input />
         </Form.Item>
+        
 
         <Form.Item
           name="category"
@@ -61,6 +67,12 @@ const Add = ({isAddModalOpen,setIsAddModalOpen,categories,products ,setProducts}
             options={categories}
           />
         </Form.Item>
+
+        <Form.Item name="itemDetail" label="Raf Bilgisi" 
+        rules={[{required:true, message:"Raf Bilgisi Boş Geçilemez"}]} >
+            <Input />
+        </Form.Item>
+        
         <Form.Item className="flex justify-end mb-0">
           <Button type="primary" htmlType="submit">
             Oluştur

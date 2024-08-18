@@ -59,10 +59,10 @@ const StatsPage = () => {
                 <span>{user.UserName}</span>
             </h2>
             <div className="lg:flex lg:justify-around grid lg:grid-cols-4 md:grid-cols-2 md:ml-28 lg:ml-0 justify-center my-5">
-                <StatsCard title={"Toplam Müşteri"} amount={totalCustomers} img={"/images/mandalina.jpg"} />
-                <StatsCard title={"Toplam Satış"} amount={totalCustomers} img={"/images/sale.png"} />
-                <StatsCard title={"Toplam Kazanç"} amount={totalRevenue} img={"/images/money.png"} />
-                <StatsCard title={"Toplam Ürün"} amount={totalProducts} img={"/images/product.png"} />
+                <StatsCard title={"Toplam Müşteri"} amount={totalCustomers}  />
+                <StatsCard title={"Toplam Satış"} amount={totalCustomers}  />
+                <StatsCard title={"Toplam Kazanç"} amount={totalRevenue}  />
+                <StatsCard title={"Toplam Ürün"} amount={totalProducts}  />
             </div>
 
             <div className='sm:flex sm:flex-col md:flex-col lg:flex lg:flex-row justify-between'>

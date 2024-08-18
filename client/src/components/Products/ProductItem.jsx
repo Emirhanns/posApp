@@ -15,11 +15,14 @@ const ProductItem = ({item}) => {
           <img
             alt="example"
             src={item.img}
-            className="w-full h-20 object-cover" // İstenilen yüksekliği ayarlayın (gerekirse ayarlayın)
+            className="w-full h-40 object-fit" // İstenilen yüksekliği ayarlayın (gerekirse ayarlayın)
             />
           <div className="p-1">
             <h3 className="text-sm font-bold mb-1">{item.title}</h3>
-            <p className="text-gray-600 text-sm">{item.price}TL</p>
+            <h3 className="text-sm font-bold mb-1">{item.author}</h3>
+            <p className="text-gray-600 text-sm">{item.price} ₺</p>
+            <p className="text-gray-600 text-sm"> <b>Raf Bilgisi: </b>{item.itemDetail}</p>
+
           </div>
         </div>
           )

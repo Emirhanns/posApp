@@ -73,13 +73,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                                 <tbody>
                 {customer?.cartItems.map((item) => (
                     <tr className="border-b border-slate-200">
-                      <td className="py-4 sm:table-cell hidden">
-                        <img
-                          src={item.img}
-                          alt=""
-                          className="w-12 h-12 object-cover"
-                        />
-                      </td>
+                      
                       <td className="py-4 sm:table-cell hidden">
                         <div className="flex flex-col">
                           <span className="font-medium">{item.title}</span>
@@ -115,7 +109,7 @@ const CreateBill = ({ isModalOpen, setIsModalOpen, customer }) => {
                                     </tr>
                                     <tr>
                                         <th className="sm:text-right text-left pt-6 font-normal" colSpan={3} scope="row">KDV</th>
-                                        <th className="text-right pt-6 font-normal" scope="row">+{customer?.tax}₺L</th>
+                                        <th className="text-right pt-6 font-normal" scope="row">+{customer?.tax}₺</th>
                                     </tr>
                                     <tr>
                                         <th className="sm:text-right text-left pt-6 font-normal" colSpan={3} scope="row">Toplam</th>
