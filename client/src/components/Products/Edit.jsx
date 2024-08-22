@@ -193,6 +193,7 @@ const Edit = () => {
           >
             <Input placeholder="Ürün fiyatı giriniz." />
           </Form.Item>
+
           <Form.Item
             name="category"
             label="Kategori Seç"
@@ -215,6 +216,16 @@ const Edit = () => {
               options={categories}
             />
           </Form.Item>
+
+              <Form.Item
+              name="itemDetail"
+              label="Raf Bilgisi"
+              rules={[
+                { required: true, message: "Raf bilgisi Boş Geçilemez!" },
+              ]}>
+            <Input placeholder="Raf bilgisi giriniz." />
+              </Form.Item>
+
           <Form.Item className="flex justify-end mb-0">
             <Button type="primary" htmlType="submit">
               Güncelle

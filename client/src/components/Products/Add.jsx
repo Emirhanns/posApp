@@ -72,6 +72,8 @@ const Add = ({isAddModalOpen,setIsAddModalOpen,categories,products ,setProducts}
         rules={[{required:true, message:"Raf Bilgisi Boş Geçilemez"}]} >
             <Input />
         </Form.Item>
+
+        
         
         <Form.Item className="flex justify-end mb-0">
           <Button type="primary" htmlType="submit">
