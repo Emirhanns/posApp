@@ -6,6 +6,7 @@ import StatsPage from "./pages/StatsPage";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import ProductPages from "./pages/ProductPages";
+import AllBooks from "./pages/AllBooks";
 import BillsPage from "./pages/BillsPage";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -72,6 +73,17 @@ function App() {
             </RouteControl>
           }
         />
+        <Route
+          path="/books"
+          element={
+            <RouteControl>
+              <AllBooks />
+            </RouteControl>
+          }
+        />
+         
+        
+        
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>

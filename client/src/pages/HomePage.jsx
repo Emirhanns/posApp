@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import CardTotals from "../components/CardTotals/CardTotals";
+// import CardTotals from "../components/CardTotals/CardTotals";
 import Categories from "../components/Categories/Categories";
 import Header from "../components/Header/Header";
 import Products from "../components/Products/Products";
 import {Spin} from "antd";
+import BookSuggestion from '../components/Suggestion/BookSuggestion';
 const HomePage = () => {
 
   const [categories, setCategories] = useState();
@@ -58,7 +59,7 @@ const HomePage = () => {
         </div>
 
         <div className="cardWrapper min-w-[300px]">
-        <CardTotals />
+        <BookSuggestion />
 
         </div>
 

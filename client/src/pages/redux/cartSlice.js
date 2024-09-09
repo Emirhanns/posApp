@@ -10,6 +10,7 @@ const cartSlice = createSlice({
       ? JSON.parse(localStorage.getItem("cart")).total
       : 0,
         tax: 10,
+        selectedBook: null,
     },
     reducers: {
         addProduct: (state, action) => {
@@ -53,10 +54,13 @@ const cartSlice = createSlice({
             state.cartItems = [];
             state.total = 0;
           },
+          setSelectedBook: (state, action) => {  // Yeni reducer
+            state.selectedBook = action.payload;
+          },
     }
    
 
 })
 
-export const { addProduct, deleteCart, increase, decrease,reset } = cartSlice.actions;
+export const { addProduct, deleteCart, increase, decrease,reset,setSelectedBook } = cartSlice.actions;
 export default cartSlice.reducer

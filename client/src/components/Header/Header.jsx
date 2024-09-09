@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeOutlined, CopyOutlined, ShoppingCartOutlined, UserOutlined, LogoutOutlined, PieChartOutlined } from '@ant-design/icons';
+import { HomeOutlined, CopyOutlined, ShoppingCartOutlined, UserOutlined, LogoutOutlined, PieChartOutlined,BookOutlined} from '@ant-design/icons';
 import { Input, Badge, message } from 'antd';
 import { Link,   useLocation,   useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -90,6 +90,14 @@ const Header = ({setSearch}) => {
                         </span>
                     </Link>
 
+                    <Link to={"/books"} className={`menu-link flex flex-col items-center hover:text-[blue] transition-all ${pathname === "/stats" && "active"}`}>
+                        <BookOutlined className="md:text-lg sm:text-base" />
+                        <span>
+                            Tavsiye
+                        </span>
+                    </Link>
+                    
+
                     <div onClick={logOut}>
                         <Link className = 'menu-link flex flex-col items-center hover:text-[red] transition-all text-xl md:text-2x '>
                             <LogoutOutlined className="md:text-2xl text-xl" />
@@ -107,6 +115,8 @@ const Header = ({setSearch}) => {
                         Sepet
                     </span>
                 </Link>
+
+               
             </header>
         </div>
     )

@@ -2,9 +2,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const port = process.env.PORT || 5000;
+const port = 5000;
 const app = express();
 const logger = require("morgan");
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+app.use('/api/recommendations', createProxyMiddleware({
+    target: 'http://localhost:5001',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api/recommendations': '/api/recommendations',
+    },
+    logLevel: 'debug',
+  }));
 
 dotenv.config();
 
@@ -19,7 +29,9 @@ const connect = async () => {
 
 
 // CORS middleware'ini rotalardan önce tanımla
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000' // React uygulamanızın çalıştığı port
+}));
 
 
 //routes
@@ -30,7 +42,6 @@ const ProductRoute = require("./routes/products.js")
 const BillRoute = require("./routes/bills.js")
 const AuthRoute = require("./routes/auth.js")
 const UserRoute = require("./routes/users.js")
-
 
 //middlewares
 
@@ -45,7 +56,7 @@ app.use(logger("dev"));
 
 
 app.listen(port, () => {
-    console.log(`Örnek ${port}`);
+    console.log(`Örnek port: ${port}`);
     connect();
 });
 

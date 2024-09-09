@@ -1,0 +1,136 @@
+[
+    {
+        "antecedents": [
+            "Seninle Ba\u015flamad\u0131"
+        ],
+        "consequents": [
+            "Dinle, K\u00fc\u00e7\u00fck Adam"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2352941176,
+        "support": 0.1470588235,
+        "confidence": 0.7142857143,
+        "lift": 3.0357142857,
+        "leverage": 0.098615917,
+        "conviction": 2.6764705882,
+        "zhangs_metric": 0.8444444444
+    },
+    {
+        "antecedents": [
+            "Dinle, K\u00fc\u00e7\u00fck Adam"
+        ],
+        "consequents": [
+            "Seninle Ba\u015flamad\u0131"
+        ],
+        "antecedent support": 0.2352941176,
+        "consequent support": 0.2058823529,
+        "support": 0.1470588235,
+        "confidence": 0.625,
+        "lift": 3.0357142857,
+        "leverage": 0.098615917,
+        "conviction": 2.1176470588,
+        "zhangs_metric": 0.8769230769
+    },
+    {
+        "antecedents": [
+            "Kimya-y\u0131 Saadet"
+        ],
+        "consequents": [
+            "Kur'an-\u0131 Kerim Tefsir ve Meal"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2058823529,
+        "support": 0.1470588235,
+        "confidence": 0.7142857143,
+        "lift": 3.4693877551,
+        "leverage": 0.1046712803,
+        "conviction": 2.7794117647,
+        "zhangs_metric": 0.8962962963
+    },
+    {
+        "antecedents": [
+            "Kur'an-\u0131 Kerim Tefsir ve Meal"
+        ],
+        "consequents": [
+            "Kimya-y\u0131 Saadet"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2058823529,
+        "support": 0.1470588235,
+        "confidence": 0.7142857143,
+        "lift": 3.4693877551,
+        "leverage": 0.1046712803,
+        "conviction": 2.7794117647,
+        "zhangs_metric": 0.8962962963
+    },
+    {
+        "antecedents": [
+            "Kimya-y\u0131 Saadet"
+        ],
+        "consequents": [
+            "Muhtelif-1"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2058823529,
+        "support": 0.1470588235,
+        "confidence": 0.7142857143,
+        "lift": 3.4693877551,
+        "leverage": 0.1046712803,
+        "conviction": 2.7794117647,
+        "zhangs_metric": 0.8962962963
+    },
+    {
+        "antecedents": [
+            "Muhtelif-1"
+        ],
+        "consequents": [
+            "Kimya-y\u0131 Saadet"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2058823529,
+        "support": 0.1470588235,
+        "confidence": 0.7142857143,
+        "lift": 3.4693877551,
+        "leverage": 0.1046712803,
+        "conviction": 2.7794117647,
+        "zhangs_metric": 0.8962962963
+    },
+    {
+        "antecedents": [
+            "Muhtelif-1"
+        ],
+        "consequents": [
+            "Kur'an-\u0131 Kerim Tefsir ve Meal"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2058823529,
+        "support": 0.1176470588,
+        "confidence": 0.5714285714,
+        "lift": 2.7755102041,
+        "leverage": 0.0752595156,
+        "conviction": 1.8529411765,
+        "zhangs_metric": 0.8055555556
+    },
+    {
+        "antecedents": [
+            "Kur'an-\u0131 Kerim Tefsir ve Meal"
+        ],
+        "consequents": [
+            "Muhtelif-1"
+        ],
+        "antecedent support": 0.2058823529,
+        "consequent support": 0.2058823529,
+        "support": 0.1176470588,
+        "confidence": 0.5714285714,
+        "lift": 2.7755102041,
+        "leverage": 0.0752595156,
+        "conviction": 1.8529411765,
+        "zhangs_metric": 0.8055555556
+    }
+
+
+
+
+]
+
+
